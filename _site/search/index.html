@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@8.1.0/themes/satellite-min.css">
+    <title>Search Recovery Literature - Conscious Contact</title>
+  </head>
+  <body class="font-roboto">
+    
+<header class="text-white bg-slate-800">
+  <div class="container mx-auto mb-10">
+    <nav>
+  <div class="flex flex-wrap items-center justify-between mx-auto">
+    <a href="/" class="flex items-center mt-4 mb-5 self-end">
+        <img src="/assets/img/cc.svg" class="mr-3" alt="Logo" style="max-width: 100px; height: 34px;" />
+        <span class="self-center text-2xl font-semibold whitespace-nowrap">Conscious Contact</span>
+    </a>
+    
+    <div class="self-end font-bold">
+      <ul class="flex flex-col lg:p-4 md:p-0 lg:my-4 md:flex-row md:space-x-8">
+        <li>
+          <a href="/search" class="lg:block lg:py-2 lg:pl-3 lg:pr-4">Search Recovery Literature</a>
+        </li>
+        <li>
+          <a href="/contact" class="lg:block lg:py-2 lg:pl-3 lg:pr-4">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  </div>
+</header>
+<style>
+.search-panel {
+  display: flex;
+}
+
+.search-panel__filters {
+  flex: 1;
+}
+
+.search-panel__results {
+  flex: 3;
+}
+
+.ais-Highlight-highlighted {
+  color: inherit;
+  font-size: inherit;
+  background-color: yellow;
+}
+
+#searchbox {
+  margin-bottom: 2rem;
+}
+
+#pagination {
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.ais-Hits-item, .ais-InfiniteHits-item {
+  display: block;
+}
+
+.ais-Hits-item h2, .ais-InfiniteHits-item h2 {
+  font-size: 1.1rem;
+}
+</style>
+<main>
+  <div class="container mx-auto">
+    
+<div class="search-panel">
+  <div class="search-panel__filters">
+    <h2>Books</h2>
+    <div id="refinement"></div>
+  </div>
+
+  <div class="search-panel__results">
+    <div id="searchbox"></div>
+    <div id="hits"></div>
+    <div id="pagination"></div>
+  </div>
+</div>
+  </div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.66.0"></script>
+<script src="/assets/js/search.js"></script>
+
+  </body>
+</html>
