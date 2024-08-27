@@ -1,8 +1,5 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# build output
-/_site
-
 # dependencies
 /node_modules
 
@@ -11,6 +8,7 @@
 
 # production
 /dist
+/_site
 /.cache
 
 # misc
