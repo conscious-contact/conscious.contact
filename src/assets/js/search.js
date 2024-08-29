@@ -1,5 +1,5 @@
 const { algoliasearch, instantsearch } = window;
-
+// test
 const searchClient = algoliasearch(
   'YSVDXPEVLA',
   'e34fb09cc49087a338978ce4efcbd70f'
