@@ -1,0 +1,115 @@
+---
+permalink: /assets/js/search.js
+---
+// Import algoliasearch, instantsearch, instantsearch.css, and stylesheet
+import { liteClient as algoliasearch } from 'algoliasearch/lite';
+import instantsearch from "instantsearch.js";
+import Alpine from 'alpinejs';
+import "instantsearch.css/themes/satellite.css";
+import "../css/style.css";
+
+// Import instantsearch widgets
+import {
+  searchBox,
+  hits,
+  configure,
+  pagination,
+  refinementList,
+  // hitsPerPage,
+  currentRefinements,
+  // clearRefinements,
+} from "instantsearch.js/es/widgets";
+
+const APP_ID = "{{ global.ALGOLIA_APP_ID }}";
+const SEARCH_ONLY_API_KEY = "{{ global.ALGOLIA_SEARCH_ONLY_API_KEY }}";
+const INDEX_NAME = "{{ global.ALGOLIA_INDEX_NAME }}";
+const algoliaClient = algoliasearch(APP_ID, SEARCH_ONLY_API_KEY); 
+
+const searchClient = {
+  ...algoliaClient,
+  search(requests) {
+    if (requests.every(({params}) => !params.query)) {
+      return Promise.resolve({
+        results: requests.map(() => ({
+          hits: [],
+          nbHits: 0,
+          nbPages: 0,
+          page: 0,
+          processingTimeMS: 0,
+          hitsPerPage: 0,
+          exhaustiveNbHits: false,
+          query: '',
+          params: '',
+        })),
+      });
+    }
+
+    return algoliaClient.search(requests);
+  },
+}
+
+// Create the instantsearch instance
+const search = instantsearch({
+  indexName: INDEX_NAME,
+  searchClient,
+});
+
+// Add widgets to the instantsearch instance
+search.addWidgets([
+  searchBox({
+    container: "#searchbox",
+    placeholder: "Search 12-step literature",
+    searchAsYouType: false,
+    autofocus: true
+  }),
+  hits({
+    container: "#hits",
+    templates: {
+      item: (hit, { html, components }) => html`
+        <li class="">
+          <h2 class="text-lg mb-1 font-bold">${hit.Book}, page ${hit.Page}</h2>
+          <h3 class="text-xs mb-2 uppercase font-bold">${hit.Section}</h3>
+          <p>${components.Highlight({ hit, attribute: "Content" })}</p>
+        </li>
+      `,
+    },
+  }),
+  configure({
+    hitsPerPage: 10,
+  }),
+  pagination({
+    container: "#pagination",
+  }),
+  refinementList({
+    container: "#refinement-list",
+    attribute: "{{ global.ALGOLIA_REFINEMENT_ATTRIBUTE }}",
+  }),
+  currentRefinements({
+    container: "#current-refinements",
+  }),
+  // clearRefinements({
+  //   container: '#clear-refinements',
+  //   cssClasses: {
+  //     button: [
+  //       'p-2',
+  //       'rounded-full',
+  //       'bg-slate-400',
+  //     ],
+  //     disabledButton: 'hidden',
+  //   }
+  // }),
+]);
+
+// Start the Alpinejs instance
+try {
+  Alpine.start();
+} catch (error) {
+  console.error('Alpinejs start error', error);
+}
+
+// Start the instantsearch instance
+try {
+  search.start();
+} catch (error) {
+  console.error('Algolia search boot error', error);
+}
