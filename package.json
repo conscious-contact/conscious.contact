@@ -8,7 +8,7 @@
     "build": "run-s build:*",
     "dev:11ty": "eleventy --serve",
     "dev:css": "tailwindcss -i src/assets/css/tailwind.css -o _site/assets/css/style.css --watch",
-    "build:11ty": "eleventy",
+    "build:11ty": "rm -rf _site && eleventy",
     "build:css": "tailwindcss -i src/assets/css/tailwind.css -o _site/assets/css/style.css --postcss"
   },
   "keywords": [],
