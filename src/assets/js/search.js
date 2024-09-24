@@ -1,28 +1,9 @@
----
-permalink: /assets/js/search.js
----
 // Import algoliasearch, instantsearch, instantsearch.css, and stylesheet
-import { liteClient as algoliasearch } from 'algoliasearch/lite';
-import instantsearch from "instantsearch.js";
-import Alpine from 'alpinejs';
-import "instantsearch.css/themes/satellite.css";
-import "../css/style.css";
+// import Alpine from 'alpinejs';
 
-// Import instantsearch widgets
-import {
-  searchBox,
-  hits,
-  configure,
-  pagination,
-  refinementList,
-  // hitsPerPage,
-  currentRefinements,
-  // clearRefinements,
-} from "instantsearch.js/es/widgets";
-
-const APP_ID = "{{ global.ALGOLIA_APP_ID }}";
-const SEARCH_ONLY_API_KEY = "{{ global.ALGOLIA_SEARCH_ONLY_API_KEY }}";
-const INDEX_NAME = "{{ global.ALGOLIA_INDEX_NAME }}";
+const APP_ID = "YSVDXPEVLA";
+const SEARCH_ONLY_API_KEY = "e34fb09cc49087a338978ce4efcbd70f";
+const INDEX_NAME = "literature";
 const algoliaClient = algoliasearch(APP_ID, SEARCH_ONLY_API_KEY); 
 
 const searchClient = {
@@ -56,13 +37,13 @@ const search = instantsearch({
 
 // Add widgets to the instantsearch instance
 search.addWidgets([
-  searchBox({
+  instantsearch.widgets.searchBox({
     container: "#searchbox",
     placeholder: "Search 12-step literature",
     searchAsYouType: false,
     autofocus: true
   }),
-  hits({
+  instantsearch.widgets.hits({
     container: "#hits",
     templates: {
       item: (hit, { html, components }) => html`
@@ -72,19 +53,29 @@ search.addWidgets([
           <p>${components.Highlight({ hit, attribute: "Content" })}</p>
         </li>
       `,
+      // empty: ({ query }, { html }) => {
+      //   const noResults = `No results found for <strong>${ query }</strong>. If you used quotes, try removing them to broaden your search.`;
+      //   const instructions = `
+      //     <h2 class="text-xl font-bold">How to Search</h2>
+      //     <p>How to use the search feature.</p>
+      //   `;
+      //   return html`${ (query) ? noResults : instructions }`
+      // }
     },
   }),
-  configure({
+  instantsearch.widgets.configure({
     hitsPerPage: 10,
   }),
-  pagination({
+  instantsearch.widgets.pagination({
     container: "#pagination",
+    showFirst: false,
+    showLast: false
   }),
-  refinementList({
+  instantsearch.widgets.refinementList({
     container: "#refinement-list",
-    attribute: "{{ global.ALGOLIA_REFINEMENT_ATTRIBUTE }}",
+    attribute: "Book",
   }),
-  currentRefinements({
+  instantsearch.widgets.currentRefinements({
     container: "#current-refinements",
   }),
   // clearRefinements({
@@ -101,11 +92,11 @@ search.addWidgets([
 ]);
 
 // Start the Alpinejs instance
-try {
-  Alpine.start();
-} catch (error) {
-  console.error('Alpinejs start error', error);
-}
+// try {
+//   Alpine.start();
+// } catch (error) {
+//   console.error('Alpinejs start error', error);
+// }
 
 // Start the instantsearch instance
 try {

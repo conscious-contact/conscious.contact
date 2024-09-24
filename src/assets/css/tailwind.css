@@ -23,6 +23,14 @@ html {
 .ais-ClearRefinements-button:hover {
   @apply bg-slate-100
 }
+.ais-Highlight-highlighted, .ais-Snippet-highlighted {
+  background-color: inherit;
+  color: inherit;
+  @apply font-bold
+}
+.ais-Hits--empty {
+  @apply bg-slate-50 px-4 py-2 md:px-8 md:py-6 rounded-md
+}
 
 @tailwind base;
 @tailwind components;
