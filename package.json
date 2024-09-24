@@ -8,7 +8,7 @@
     "build": "run-s build:*",
     "dev:11ty": "eleventy --serve",
     "dev:css": "tailwindcss -i src/assets/css/tailwind.css -o _site/assets/css/style.css --watch",
-    "build:11ty": "eleventy",
+    "build:11ty": "rm -rf _site && eleventy",
     "build:css": "tailwindcss -i src/assets/css/tailwind.css -o _site/assets/css/style.css --postcss"
   },
   "keywords": [],
@@ -16,9 +16,19 @@
   "license": "ISC",
   "devDependencies": {
     "@11ty/eleventy": "2.0.1",
+    "@11ty/eleventy-plugin-vite": "4.0.0",
     "autoprefixer": "10.4.20",
+    "css-loader": "7.1.2",
+    "dotenv": "16.4.5",
     "npm-run-all": "4.1.5",
     "postcss": "8.4.41",
+    "style-loader": "4.0.0",
     "tailwindcss": "3.4.10"
+  },
+  "dependencies": {
+    "algoliasearch": "5.2.3",
+    "alpinejs": "3.14.1",
+    "instantsearch.css": "8.5.0",
+    "instantsearch.js": "4.74.0"
   }
 }

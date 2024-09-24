@@ -5,9 +5,31 @@
   margin: 0;
   padding: 0;
 }
-
 html {
   scroll-behavior: smooth;
+}
+.ais-CurrentRefinements {
+  @apply mb-4
+}
+.ais-CurrentRefinements--noRefinement {
+  @apply h-0 mb-0
+}
+.ais-ClearRefinements-button, .ais-ClearRefinements-button:hover {
+  all: unset;
+}
+.ais-ClearRefinements-button {
+  @apply bg-slate-500 rounded-full p-2 h-max
+}
+.ais-ClearRefinements-button:hover {
+  @apply bg-slate-100
+}
+.ais-Highlight-highlighted, .ais-Snippet-highlighted {
+  background-color: inherit;
+  color: inherit;
+  @apply font-bold
+}
+.ais-Hits--empty {
+  @apply bg-slate-50 px-4 py-2 md:px-8 md:py-6 rounded-md
 }
 
 @tailwind base;

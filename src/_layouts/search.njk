@@ -7,47 +7,9 @@ layout: base
     {% include "../_includes/nav.njk" %}
   </div>
 </header>
-<style>
-.search-panel {
-  display: flex;
-}
-
-.search-panel__filters {
-  flex: 1;
-}
-
-.search-panel__results {
-  flex: 3;
-}
-
-.ais-Highlight-highlighted {
-  color: inherit;
-  font-size: inherit;
-  background-color: yellow;
-}
-
-#searchbox {
-  margin-bottom: 2rem;
-}
-
-#pagination {
-  margin: 2rem auto;
-  text-align: center;
-}
-
-.ais-Hits-item, .ais-InfiniteHits-item {
-  display: block;
-}
-
-.ais-Hits-item h2, .ais-InfiniteHits-item h2 {
-  font-size: 1.1rem;
-}
-</style>
 <main>
-  <div class="container mx-auto py-10">
+  <div class="container mx-auto p-8 md:py-12">
     {{content | safe}}
   </div>
 </main>
-<script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.22.1/dist/algoliasearch-lite.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.66.0"></script>
-<script src="{{ '/assets/js/search.js' | url }}"></script>
+<script type="module" src="{{ '/assets/js/search.js' | url }}"></script>
