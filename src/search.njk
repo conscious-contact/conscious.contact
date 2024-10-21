@@ -5,7 +5,7 @@ title: Search Recovery Literature
 
 <div class="search-panel flex flex-col md:flex-row">
   <div 
-    class="mb-4 md:shrink md:min-w-36 lg:min-w-48 md:mr-8"
+    class="mb-4 md:shrink md:min-w-72 lg:min-w-72 md:mr-8"
     x-data="{ open: true }">
     <div class="">
       <button type="button" class="font-bold text-sm bg-white outline outline-1 outline-slate-500 rounded px-3 py-2" x-on:click="open = ! open">
@@ -17,8 +17,7 @@ title: Search Recovery Literature
     </div>
     <div
       class="search-panel__filters mt-4"
-      :class="open ? '' : 'hidden'"
->
+      :class="open ? '' : 'hidden'">
       <div id="refinement-list"></div>
     </div>
   </div>
