@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /cdn-cgi/l/email-protection
+
+Host: https://conscious.contact
+
+Sitemap: https://conscious.contact/sitemap.xml
